@@ -1,3 +1,4 @@
-# CS340-Petsss
+# CS340-Final Project
 This is for our final project
-im hungry yum food
+
+
