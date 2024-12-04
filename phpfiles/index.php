@@ -93,7 +93,7 @@
                                         echo "<td>" . $row['Zip'] . "</td>";
                                         echo "<td>";
                                             //we can view employees from shelter, volunteers from shelter, pets from shelter
-                                            echo "<a href='shelter/viewEmloyee.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-briefcase'></span></a>";
+                                            echo "<a href='shelter/viewEmployee.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-briefcase'></span></a>";
                                             echo "<a href='shelter/viewVolunteer.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-list-alt'></span></a>";
                                             echo "<a href='shelter/viewPet.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-heart'></span></a>";
                                             echo "<a href='shelter/viewAdopter.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
