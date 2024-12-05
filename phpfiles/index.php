@@ -155,8 +155,8 @@
 										echo "<td>" . $row['Manager_id'] . "</td>";
                                         echo "<td>";
                                             //we can view employee's job location, edit record, and delete record
-                                            echo "<a href='employee/updateEmployee.php?Ssn=". $row['Ssn'] ."' title='Update Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='employee/deleteEmployee.php?Ssn=". $row['Ssn'] ."' title='Delete Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='employee/updateEmployee.php?Employee_ID=". $row['Employee_ID'] ."' title='Update Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='employee/deleteEmployee.php?Employee_ID=". $row['Employee_ID'] ."' title='Delete Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
