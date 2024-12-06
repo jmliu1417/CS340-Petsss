@@ -17,7 +17,7 @@ if(isset($_POST["Employee_ID"]) && !empty($_POST["Employee_ID"])){
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             // Records deleted successfully. Redirect to landing page
-            echo "Record deleted successfully";
+            echo "Employee record deleted successfully";
             header("location: ../index.php");
             exit();
         } else{
@@ -28,7 +28,6 @@ if(isset($_POST["Employee_ID"]) && !empty($_POST["Employee_ID"])){
     // Close statement
     mysqli_stmt_close($stmt);
     
-    echo "NICE!";
     // Close connection
     mysqli_close($link);
 } else{
