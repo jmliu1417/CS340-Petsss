@@ -44,7 +44,7 @@
 </html> 
 
 <?php
-
+#bruh
 require_once "config.php";
 
 $Adopter_fname = $Adopter_lname = $Street = $State = " ";
