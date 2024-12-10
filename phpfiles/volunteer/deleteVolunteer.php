@@ -62,7 +62,7 @@ if(isset($_POST["Volunteer_ID"]) && !empty($_POST["Volunteer_ID"])){
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger">
                             <input type="hidden" name="Volunteer_ID" value="<?php echo trim($_GET["Volunteer_ID"]); ?>"/>
-                            <p>Are you sure you want to delete this employee record?</p>
+                            <p>Are you sure you want to delete this volunteer record?</p>
                             <p>
                                 <input type="submit" value="Yes" class="btn btn-danger">
                                 <a href="../index.php" class="btn btn-secondary">No</a>
