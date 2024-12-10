@@ -122,7 +122,7 @@
                     <a href="employee/createEmployee.php" class="btn btn-success pull-right">Add New Employee</a>
                     <?php
                     //Employee Table
-                    $sql2 = "SELECT Employee_ID, Employee_fname, Employee_lname, Employee_pos, Employee_salary, Employee_Phone_number, Employee_age, Manager_id
+                    $sql2 = "SELECT Employee_ID, Employee_fname, Employee_lname, Employee_pos, Employee_salary, Employee_Phone_number, Employee_age, Manager_id, Shelter_ID
 							FROM employee";
                     if($result2 = mysqli_query($link, $sql2)){
                         if(mysqli_num_rows($result2) > 0){
@@ -138,6 +138,7 @@
 										echo "<th width = 15%>Phone Number</th>";
                                         echo "<th width=5%> Age  </th>";
                                         echo "<th width =5%>Manager ID  </th>";
+                                        echo "<th width =5%>Shelter ID  </th>";
                                         echo "<th width =5%>Actions  </th>";
                                     echo "</tr>";
                                 echo "</thead>";
@@ -153,6 +154,7 @@
                                         echo "<td>" . $row['Employee_Phone_number'] . "</td>";										
                                         echo "<td>" . $row['Employee_age'] . "</td>";
 										echo "<td>" . $row['Manager_id'] . "</td>";
+                                        echo "<td>" . $row['Shelter_ID'] . "</td>";
                                         echo "<td>";
                                             //we can view employee's job location, edit record, and delete record
                                             echo "<a href='employee/updateEmployee.php?Employee_ID=". $row['Employee_ID'] ."' title='Update Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
