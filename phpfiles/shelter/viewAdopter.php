@@ -34,7 +34,7 @@
                     </div>
                     <?php
                     // Prepare a select statement
-                    $sql = "SELECT * FROM Adopter";
+                    $sql = "SELECT * FROM adopter";
 
                     if ($result = mysqli_query($link, $sql)) {
                         if (mysqli_num_rows($result) > 0) {
