@@ -274,7 +274,7 @@
                                         echo "<td>";
                                             //we can view adopter's pet
                                             echo "<a href='shelter/viewPet.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-heart'></span></a>";
-                                            echo "<a href='adopter/updateAdopter.php?Ssn=". $row['Ssn'] ."' title='Update Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='adopter/updateAdopter.php?Adopter_ID=". $row['Adopter_ID'] ."' title='Update Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                             echo "<a href='adopter/deleteAdopter.php?Adopter_ID=". $row['Adopter_ID'] ."' title='Delete Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
