@@ -73,8 +73,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Employee_Age = trim($_POST["Age"]);
     if (empty($Employee_Age)) {
         $Employee_Age_err = "Please enter an Age.";
-    } elseif (!is_numeric($Employee_Age) || $Employee_Age < 18 || $Employee_Age > 100) {
-        $Employee_Age_err = "Please enter a valid Age (18-100).";
     }
 
     // Manager ID Validation
@@ -123,11 +121,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_Shelter_ID = $Shelter_ID;
 
             // Execute the statement
-            if (mysqli_stmt_execute($stmt)) {
-                header("location:../index.php");
-                exit();
-            } else {
-                echo "Something went wrong. Please try again.";
+            try {
+                if (mysqli_stmt_execute($stmt)) {
+                    header("location:../index.php");
+                    exit();
+                }
+            } catch (mysqli_sql_exception $e) {
+                $error_message = $e->getMessage();
+                if (strpos($error_message, 'Employee age must be 18 or older') !== false) {
+                    // Inject a JavaScript alert
+                    echo "Employee age must be 18 or older";
+                    exit();
+                } else {
+                    // For other errors, you can still display them (optional)
+                    echo "<script>alert('Something went wrong. Please try again. Error: " . addslashes($error_message) . "'); window.history.back();</script>";
+                    exit();
+                }
             }
         }
         mysqli_stmt_close($stmt);
