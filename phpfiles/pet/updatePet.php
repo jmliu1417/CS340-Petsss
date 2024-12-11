@@ -96,13 +96,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	// Validate Birthdate
     $Pet_time = trim($_POST["Pet_time"]);
     if(empty($Pet_time)){
-        $ptime_err = "Please enter pet time.";     
+        $ptime_err = "Please enter the arrival time of the pet.";     
     }	
 
     $Pet_status = trim($_POST["Pet_status"]);
-    if(empty($Pet_status)){
-        $pstat_err = "Please enter Pet_status.";     
-    }	
+    if (empty($Pet_status)) {
+        $pstat_err = "Please select the pet's status.";
+    } elseif (!in_array($Pet_status, ['Sheltered', 'Adopted'])) {
+        $pstat_err = "Invalid pet status selected.";
+    }
 
     $Shelter_ID = trim($_POST["Shelter_ID"]);
     if (empty($Shelter_ID)) {
@@ -267,34 +269,37 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
                     <p>Please edit the input values and submit to update.
                     <form action="<?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?>" method="post">
 						<div class="form-group <?php echo (!empty($pname_err)) ? 'has-error' : ''; ?>">
-                            <label>Pet name</label>
+                            <label>Pet Name</label>
                             <input type="text" name="Pet_name" class="form-control" value="<?php echo $Pet_name; ?>">
                             <span class="help-block"><?php echo $pname_err;?></span>
                         </div>
 						<div class="form-group <?php echo (!empty($pt_err)) ? 'has-error' : ''; ?>">
-                            <label>Pet type</label>
+                            <label>Pet Type</label>
                             <input type="text" name="Pet_type" class="form-control" value="<?php echo $Pet_type; ?>">
                             <span class="help-block"><?php echo $pt_err;?></span>
                         </div>
 						<div class="form-group <?php echo (!empty($pbreed_err)) ? 'has-error' : ''; ?>">
-                            <label>Pet breed</label>
+                            <label>Pet Breed</label>
                             <input type="text" name="Pet_breed" class="form-control" value="<?php echo $Pet_breed; ?>">
                             <span class="help-block"><?php echo $pbreed_err;?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($page_err)) ? 'has-error' : ''; ?>">
-                            <label>Pet age</label>
+                            <label>Pet Age</label>
                             <input type="text" name="Pet_age" class="form-control" value="<?php echo $Pet_age; ?>">
                             <span class="help-block"><?php echo $page_err;?></span>
                         </div>
 						<div class="form-group <?php echo (!empty($ptime_err)) ? 'has-error' : ''; ?>">
-                            <label>Pet time</label>
-                            <input type="time" min="1" max="20" name="Pet_time" class="form-control" value="<?php echo $Pet_status; ?>">
+                            <label>Pet Arrival Time</label>
+                            <input type="date" min="1" max="20" name="Pet_time" class="form-control" value="<?php echo $Pet_status; ?>">
                             <span class="help-block"><?php echo $ptime_err;?></span>
                         </div>	
-                        <div class="form-group <?php echo (!empty($pstat_err)) ? 'has-error' : ''; ?>">
-                            <label>Pet status</label>
-                            <input type="text" name="Pet_status" class="form-control" value="<?php echo $Pet_status; ?>">
-                            <span class="help-block"><?php echo $pstat_err;?></span>
+                        <div class="form-group <?php echo (!empty($Pet_status_err)) ? 'has-error' : ''; ?>">
+                            <label>Pet Status</label>
+                            <select name="Pet_status" class="form-control">
+                                <option value="Sheltered" <?php echo ($Pet_status == 'Sheltered') ? 'selected' : ''; ?>>Sheltered</option>
+                                <option value="Adopted" <?php echo ($Pet_status == 'Adopted') ? 'selected' : ''; ?>>Adopted</option>
+                            </select>
+                            <span class="help-block"><?php echo $pstat_err; ?></span>
                         </div>
                         <div class="form-group <?php echo (!empty($shelter_err)) ? 'has-error' : ''; ?>">
                             <label>Pet shelter ID</label>
