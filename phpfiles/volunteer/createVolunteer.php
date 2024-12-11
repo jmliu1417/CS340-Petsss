@@ -9,9 +9,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($Volunteer_ID)) {
         $Volunteer_ID_err = "Please enter a Volunteer ID.";
     } else {
-        $sql = "SELECT Volunteer_ID FROM volunteers WHERE Volunteer_ID = ?";
-        if ($stmt = $mysqli->prepare($sql)) {
-            $stmt->bind_param("i", $Volunteer_ID);
+        $sql = "SELECT Volunteer_ID FROM volunteer WHERE Volunteer_ID = ?";
+        if ($stmt = $link->prepare($sql)) {
+            $stmt->bind_param("s", $Volunteer_ID);
             if ($stmt->execute()) {
                 $stmt->store_result();
                 if ($stmt->num_rows > 0) {
@@ -44,26 +44,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (empty($Volunteer_ID_err) && empty($Volunteer_fname_err) && empty($Volunteer_lname_err) && empty($Volunteer_phone_number_err)) {
-        $sql = "INSERT INTO volunteers (Volunteer_ID, Volunteer_fname, Volunteer_lname, Volunteer_phone_number) VALUES (?, ?, ?, ?)";
-        if ($stmt = $mysqli->prepare($sql)) {
-            $stmt->bind_param("isss", $param_Volunteer_ID, $param_Volunteer_fname, $param_Volunteer_lname, $param_Volunteer_phone_number);
+        $sql = "INSERT INTO volunteer (Volunteer_ID, Volunteer_fname, Volunteer_lname, Volunteer_phone_number) VALUES (?, ?, ?, ?)";
+        if ($stmt = mysqli_prepare($link, $sql)){
+            mysqli_stmt_bind_param($stmt, "ssss", 
+            $param_Volunteer_ID, $param_Volunteer_fname, $param_Volunteer_lname, $param_Volunteer_phone_number);
 
             $param_Volunteer_ID = $Volunteer_ID;
             $param_Volunteer_fname = $Volunteer_fname;
             $param_Volunteer_lname = $Volunteer_lname;
             $param_Volunteer_phone_number = $Volunteer_phone_number;
 
-            if ($stmt->execute()) {
-                header("location: index.php");
+            if (mysqli_stmt_execute($stmt)) {
+                header("location: ../index.php");
                 exit();
             } else {
                 echo "<center><h4>Error while adding new volunteer</h4></center>";
-                $Volunteer_ID_err = "The Volunteer ID is already taken. Please use a unique ID.";
+                //$Volunteer_ID_err = "The Volunteer ID is already taken. Please use a unique ID.";
             }
         }
-        $stmt->close();
+        mysqli_stmt_close($stmt);
     }
-    $mysqli->close();
+    mysqli_close($link);
 }
 ?>
 

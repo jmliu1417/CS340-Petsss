@@ -10,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($Pet_ID)) {
         $Pet_ID_err = "Please enter a Pet ID.";
     } else {
-        $sql = "SELECT Pet_ID FROM Pets WHERE Pet_ID = ?";
-        if ($stmt = $mysqli->prepare($sql)) {
+        $sql = "SELECT Pet_ID FROM pet WHERE Pet_ID = ?";
+        if ($stmt = $link->prepare($sql)) {
             $stmt->bind_param("s", $Pet_ID);
             if ($stmt->execute()) {
                 $stmt->store_result();
@@ -27,7 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $Pet_name = trim($_POST["Pet_name"]);
     if (empty($Pet_name)) {
         $Pet_name_err = "Please enter a name for the pet.";
-    }
+    }elseif(!filter_var($Pet_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
+        $Pet_name_err = "Please enter a valid First Name.";}
 
     // Validate Pet_type
     $Pet_type = trim($_POST["Pet_type"]);
@@ -60,18 +61,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Validate Adopter_ID (optional)
-    $Adopter_ID = trim($_POST["Adopter_ID"]);
+    $Adopter_ID = !empty(trim($_POST["Adopter_ID"])) ? trim($_POST["Adopter_ID"]) : null;
+
 
     // Check for errors before inserting into database
     if (empty($Pet_ID_err) && empty($Pet_name_err) && empty($Pet_type_err) && empty($Pet_breed_err) && 
         empty($Pet_age_err) && empty($Pet_status_err) && empty($Shelter_ID_err)) {
-        $sql = "INSERT INTO Pets (Pet_ID, Pet_name, Pet_type, Pet_breed, Pet_age, Pet_status, Shelter_ID, Adopter_ID) 
+        $sql = "INSERT INTO pet (Pet_ID, Pet_name, Pet_type, Pet_breed, Pet_age, Pet_status, Shelter_ID, Adopter_ID) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        if ($stmt = $mysqli->prepare($sql)) {
-            $stmt->bind_param("isssissi", $Pet_ID, $Pet_name, $Pet_type, $Pet_breed, $Pet_age, $Pet_status, $Shelter_ID, $Adopter_ID);
+        if ($stmt = $link->prepare($sql)) {
+            $stmt->bind_param("ssssssss", $Pet_ID, $Pet_name, $Pet_type, $Pet_breed, $Pet_age, $Pet_status, $Shelter_ID, $Adopter_ID);
             if ($stmt->execute()) {
-                header("location: index.php");
+                header("location: ../index.php");
                 exit();
             } else {
                 echo "Something went wrong. Please try again later.";
@@ -79,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->close();
         }
     }
-    $mysqli->close();
+    $link->close();
 }
 ?>
 

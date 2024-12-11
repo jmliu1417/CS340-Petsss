@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else {
         // Check if the ID already exists in the database
         $sql = "SELECT Adopter_ID FROM adopters WHERE Adopter_ID = ?";
-        if ($stmt = $mysqli->prepare($sql)) {
+        if ($stmt = $link->prepare($sql)) {
             $stmt->bind_param("s", $Adopter_ID);
             if ($stmt->execute()) {
                 $stmt->store_result();
@@ -49,8 +49,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $Street = trim($_POST["Street"]);
     if(empty($Street)){
         $Street_err = "Please enter a Street Address";
-    } elseif(!filter_var($Street, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $Street_err = "Please enter a valid Street.";
     } 
     
     $City = trim($_POST["City"]);
@@ -82,9 +80,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $sql = "INSERT INTO adopter (Adopter_ID, Adopter_fname, Adopter_lname, Adopter_dob, Street, City,  `State`, Zip) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
          
-    if ($stmt = mysqli_prepare($mysqli, $sql)) {
+    if ($stmt = mysqli_prepare($link, $sql)) {
         // Bind variables to the prepared statement as parameters
-        mysqli_stmt_bind_param($stmt, "ssssssss", 
+        mysqli_stmt_bind_param($stmt, "sssssssi", 
             $param_Adopter_ID, 
             $param_Adopter_fname, 
             $param_Adopter_lname, 
@@ -108,21 +106,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Attempt to execute the prepared statement
         if (mysqli_stmt_execute($stmt)) {
             // Record created successfully, redirect to landing page
-            header("location: index.php");
+            
+            header("location: ../index.php");
+            echo "Record created successfully!";
             exit();
         } else {
             echo "<center><h4>Error while adding new adopter</h4></center>";
-            $Adopter_ID_err = "The Adopter ID is already taken. Please use a unique ID.";
+            echo "Error executing query: " . mysqli_error($link);
+            
         }
     }
-    
     // Close statement
     mysqli_stmt_close($stmt);
 }
 
 
 // Close connection
-mysqli_close($mysqli);
+mysqli_close($link);
 
     
 }
@@ -146,16 +146,9 @@ mysqli_close($mysqli);
             width: 70%;
             margin:0 auto;
         }
-        /* table tr td:last-child a{
-            margin-right: 15px;
-        } */
+        
     </style>
-    <!-- <script type="text/javascript">
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();   
-        });
-		 $('.selectpicker').selectpicker();
-    </script> -->
+    
     </head>
 <body>
 <div class="wrapper">

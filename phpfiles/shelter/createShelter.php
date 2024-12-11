@@ -10,8 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($Shelter_ID)) {
         $Shelter_ID_err = "Please enter a Shelter ID.";
     } else {
-        $sql = "SELECT Shelter_ID FROM Shelter WHERE Shelter_ID = ?";
-        if ($stmt = $mysqli->prepare($sql)) {
+        $sql = "SELECT Shelter_ID FROM shelter WHERE Shelter_ID = ?";
+        if ($stmt = $link->prepare($sql)) {
             $stmt->bind_param("i", $Shelter_ID);
             if ($stmt->execute()) {
                 $stmt->store_result();
@@ -62,13 +62,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check for errors before inserting into database
     if (empty($Shelter_ID_err) && empty($Shelter_name_err) && empty($phone_number_err) &&
         empty($Street_err) && empty($City_err) && empty($State_err) && empty($Zip_err)) {
-        $sql = "INSERT INTO Shelter (Shelter_ID, Shelter_name, phone_number, Street, City, State, Zip) 
+        $sql = "INSERT INTO shelter (Shelter_ID, Shelter_name, phone_number, Street, City, State, Zip) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-        if ($stmt = $mysqli->prepare($sql)) {
+        if ($stmt = $link->prepare($sql)) {
             $stmt->bind_param("isssssi", $Shelter_ID, $Shelter_name, $phone_number, $Street, $City, $State, $Zip);
             if ($stmt->execute()) {
-                header("location: index.php");
+                header("location: ../index.php");
                 exit();
             } else {
                 echo "Something went wrong. Please try again later.";
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->close();
         }
     }
-    $mysqli->close();
+    $link->close();
 }
 ?>
 

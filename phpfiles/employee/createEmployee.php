@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         // Check if the ID already exists in the database
         $sql = "SELECT Employee_ID FROM employees WHERE Employee_ID = ?";
-        if ($stmt = $mysqli->prepare($sql)) {
+        if ($stmt = $link->prepare($sql)) {
             $stmt->bind_param("s", $Employee_ID);
             if ($stmt->execute()) {
                 $stmt->store_result();
@@ -86,7 +86,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO employees (Employee_ID, Employee_fname, Employee_lname, Employee_pos, Employee_salary, Employee_Phone_number, Employee_Age, Manager_id) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        if ($stmt = mysqli_prepare($mysqli, $sql)) {
+        if ($stmt = mysqli_prepare($link, $sql)) {
             mysqli_stmt_bind_param($stmt, "ssssssis", 
                 $param_Employee_ID,
                 $param_Employee_fname,
@@ -110,7 +110,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Execute the statement
             if (mysqli_stmt_execute($stmt)) {
-                header("location:index.php");
+                header("location:../index.php");
                 exit();
             } else {
                 echo "Something went wrong. Please try again.";
@@ -118,7 +118,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         mysqli_stmt_close($stmt);
     }
-    mysqli_close($mysqli);
+    mysqli_close($link);
 }
 
 ?>
