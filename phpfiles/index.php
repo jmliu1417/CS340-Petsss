@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Company DB</title>
+    <title>Pet Adoption System DB</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -93,7 +93,7 @@
                                         echo "<td>" . $row['Zip'] . "</td>";
                                         echo "<td>";
                                             //we can view employees from shelter, volunteers from shelter, pets from shelter
-                                            echo "<a href='shelter/viewEmployee.php?Employee_ID=". $row['Employee_ID'] ."' title='View Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-briefcase'></span></a>";
+                                            echo "<a href='shelter/viewEmployee.php?Shelter_ID=". $row['Shelter_ID'] ."' title='View Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-briefcase'></span></a>";
                                             echo "<a href='shelter/viewVolunteer.php?Volunteer_ID=". $row['Volunteer_ID'] ."' title='View Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-list-alt'></span></a>";
                                             echo "<a href='shelter/viewPet.php?Pet_ID=". $row['Pet_ID'] . "' title='View Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-heart'></span></a>";
                                             echo "<a href='shelter/viewAdopter.php?Adopter_ID=". $row['Adopter_ID'] ."' title='View Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
@@ -216,7 +216,7 @@
                                         echo "<td>" . $row['Adopter_ID'] . "</td>";
                                         echo "<td>";
                                             //we can view pet's adopter and volunteer
-                                            echo "<a href='shelter/viewAdopter.php?Adopter_ID=". $row['Adopter_ID'] ."' title='View Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
+                                            echo "<a href='pet/viewPetAdopter.php?Pet_ID=". $row['Pet_ID'] ."' title='View Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
                                             echo "<a href='shelter/viewVolunteer.php?Volunteer_ID=". $row['Volunteer_ID'] ."' title='View Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-tag'></span></a>";
                                             echo "<a href='pet/updatePet.php?Pet_ID=". $row['Pet_ID']  ."' title='Update Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                             echo "<a href='pet/deletePet.php?Pet_ID=". $row['Pet_ID']  ."' title='Delete Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";

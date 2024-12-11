@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 header("location: ../index.php");
                 exit();
             } else {
-                echo "Something went wrong. Please try again later.";
+                echo "Something went wrong. Please provide vaild entries and try again later.";
             }
             $stmt->close();
         }
