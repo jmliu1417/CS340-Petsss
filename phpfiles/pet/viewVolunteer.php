@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header clearfix">
-                        <h2 class="pull-left">Volunteer Records for Shelter <?php echo htmlspecialchars($shelter_id); ?></h2>
+                        <h2 class="pull-left">Volunteer Records<?php echo htmlspecialchars($shelter_id); ?></h2>
                     </div>
                     <?php
                     // Prepare a select statement 

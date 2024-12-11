@@ -217,7 +217,7 @@
                                         echo "<td>";
                                             //we can view pet's adopter and volunteer
                                             echo "<a href='pet/viewPetAdopter.php?Pet_ID=". $row['Pet_ID'] ."' title='View Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
-                                            echo "<a href='pet/viewVolunteer.php?Pet_ID=". $row['Pet_ID'] ."' title='View Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-tag'></span></a>";
+                                            echo "<a href='pet/viewVolunteer.php?Pet_ID=". $row['Pet_ID'] ."' title='View Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-list-alt'></span></a>";
                                             echo "<a href='pet/updatePet.php?Pet_ID=". $row['Pet_ID']  ."' title='Update Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                             echo "<a href='pet/deletePet.php?Pet_ID=". $row['Pet_ID']  ."' title='Delete Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
