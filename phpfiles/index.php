@@ -93,12 +93,12 @@
                                         echo "<td>" . $row['Zip'] . "</td>";
                                         echo "<td>";
                                             //we can view employees from shelter, volunteers from shelter, pets from shelter
-                                            echo "<a href='shelter/viewEmployee.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-briefcase'></span></a>";
-                                            echo "<a href='shelter/viewVolunteer.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-list-alt'></span></a>";
-                                            echo "<a href='shelter/viewPet.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-heart'></span></a>";
-                                            echo "<a href='shelter/viewAdopter.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
+                                            echo "<a href='shelter/viewEmployee.php?Employee_ID=". $row['Employee_ID'] ."' title='View Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-briefcase'></span></a>";
+                                            echo "<a href='shelter/viewVolunteer.php?Volunteer_ID=". $row['Volunteer_ID'] ."' title='View Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-list-alt'></span></a>";
+                                            echo "<a href='shelter/viewPet.php?Pet_ID=". $row['Pet_ID'] . "' title='View Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-heart'></span></a>";
+                                            echo "<a href='shelter/viewAdopter.php?Adopter_ID=". $row['Adopter_ID'] ."' title='View Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
 
-                                            echo "<a href='shelter/updateShelter.php?Ssn=". $row['Ssn'] ."' title='Update Shelter Info' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='shelter/updateShelter.php?Shelter_ID=". $row['Shelter_ID'] ."' title='Update Shelter Info' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                             echo "<a href='shelter/deleteShelter.php?Shelter_ID=". $row['Shelter_ID'] ."' title='Delete Shelter Info' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
@@ -157,8 +157,8 @@
                                         echo "<td>" . $row['Shelter_ID'] . "</td>";
                                         echo "<td>";
                                             //we can view employee's job location, edit record, and delete record
-                                            echo "<a href='employee/updateEmployee.php?Employee_ID=". $row['Employee_ID'] ."' title='Update Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='employee/deleteEmployee.php?Employee_ID=". $row['Employee_ID'] ."' title='Delete Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='employee/updateEmployee.php?Employee_ID=". $row['Employee_ID']  ."' title='Update Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='employee/deleteEmployee.php?Employee_ID=". $row['Employee_ID']  ."' title='Delete Employee' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -216,10 +216,10 @@
                                         echo "<td>" . $row['Adopter_ID'] . "</td>";
                                         echo "<td>";
                                             //we can view pet's adopter and volunteer
-                                            echo "<a href='shelter/viewAdopter.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
-                                            echo "<a href='shelter/viewVolunteer.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-tag'></span></a>";
-                                            echo "<a href='pet/updatePet.php?Ssn=". $row['Ssn'] ."' title='Update Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='pet/deletePet.php?Pet_ID=". $row['Pet_ID'] ."' title='Delete Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='shelter/viewAdopter.php?Adopter_ID=". $row['Adopter_ID'] ."' title='View Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
+                                            echo "<a href='shelter/viewVolunteer.php?Volunteer_ID=". $row['Volunteer_ID'] ."' title='View Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-tag'></span></a>";
+                                            echo "<a href='pet/updatePet.php?Pet_ID=". $row['Pet_ID']  ."' title='Update Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='pet/deletePet.php?Pet_ID=". $row['Pet_ID']  ."' title='Delete Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -275,9 +275,9 @@
 										echo "<td>" . $row['Zip'] . "</td>";
                                         echo "<td>";
                                             //we can view adopter's pet
-                                            echo "<a href='shelter/viewPet.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-heart'></span></a>";
-                                            echo "<a href='adopter/updateAdopter.php?Adopter_ID=". $row['Adopter_ID'] ."' title='Update Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='adopter/deleteAdopter.php?Adopter_ID=". $row['Adopter_ID'] ."' title='Delete Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='shelter/viewPet.php?Pet_ID=". $row['Pet_ID'] ."' title='View Pet' data-toggle='tooltip'><span class='glyphicon glyphicon-heart'></span></a>";
+                                            echo "<a href='adopter/updateAdopter.php?Adopter_ID=". $row['Adopter_ID']  ."' title='Update Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='adopter/deleteAdopter.php?Adopter_ID=". $row['Adopter_ID']  ."' title='Delete Adopter' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -326,8 +326,8 @@
                                         echo "<td>";
                                             //we can view volunteer's tasks (taking care of which pet)
                                             //echo "<a href='shelter/viewPet.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Task' data-toggle='tooltip'><span class='glyphicon glyphicon-list-alt'></span></a>";
-                                            echo "<a href='volunteer/updateVolunteer.php?Ssn=". $row['Ssn'] ."' title='Update Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='volunteer/deleteVolunteer.php?Volunteer_ID=". $row['Volunteer_ID'] ."' title='Delete Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='volunteer/updateVolunteer.php?Volunteer_ID=". $row['Volunteer_ID']  ."' title='Update Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='volunteer/deleteVolunteer.php?Volunteer_ID=". $row['Volunteer_ID']  ."' title='Delete Volunteer' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
