@@ -57,7 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate Pet_status
     $Pet_status = trim($_POST["Pet_status"]);
     if (empty($Pet_status)) {
-        $Pet_status_err = "Please enter the status of the pet.";
+        $Pet_status_err = "Please select the pet's status.";
+    } elseif (!in_array($Pet_status, ['Sheltered', 'Adopted'])) {
+        $Pet_status_err = "Invalid pet status selected.";
     }
 
     // Validate Shelter_ID
@@ -141,7 +143,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div class="form-group <?php echo (!empty($Pet_status_err)) ? 'has-error' : ''; ?>">
                 <label>Pet Status</label>
-                <input type="text" name="Pet_status" class="form-control" value="<?php echo $Pet_status; ?>">
+                <select name="Pet_status" class="form-control">
+                    <option value="Sheltered" <?php echo ($Pet_status == 'Sheltered') ? 'selected' : ''; ?>>Sheltered</option>
+                    <option value="Adopted" <?php echo ($Pet_status == 'Adopted') ? 'selected' : ''; ?>>Adopted</option>
+                </select>
                 <span class="help-block"><?php echo $Pet_status_err; ?></span>
             </div>
             <div class="form-group <?php echo (!empty($Shelter_ID_err)) ? 'has-error' : ''; ?>">

@@ -34,6 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit();
     }
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["Adopter_ID"])) {
+    if (empty(trim($_GET["Adopter_ID"]))) {
+        // URL doesn't contain Adopter_ID parameter. Redirect to error page
+        header("location: ../error.php");
+        exit();
+    }
     $param_Adopter_ID = intval(trim($_GET["Adopter_ID"]));
 
     // Check if there are associated pets
