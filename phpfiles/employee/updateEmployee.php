@@ -60,7 +60,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }elseif(!filter_var($Employee_fname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))) {
         $fname_err = "Please enter a valid first name.";
     }
-    echo($Employee_fname);
 
     $Employee_lname = trim($_POST["Employee_lname"]);
     if(empty($Employee_lname)){
@@ -68,8 +67,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } elseif(!filter_var($Employee_lname, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
         $lname_err = "Please enter a valid last name.";
     }  
-
-    echo($Employee_lname);
 
     $Employee_pos = trim($_POST["Employee_pos"]);
     if(empty($Employee_pos)){
