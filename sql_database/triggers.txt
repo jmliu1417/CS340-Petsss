@@ -1,0 +1,48 @@
+in case there are no triggers being exported here is the backup option
+
+1. in pet table
+
+CREATE TRIGGER `remove_shelter_id_insert` BEFORE INSERT ON `pet`
+ FOR EACH ROW BEGIN
+    IF NEW.Pet_status = 'Adopted' THEN
+        SET NEW.Shelter_id = NULL;
+    END IF;
+END
+
+CREATE TRIGGER `remove_shelter_id_update` BEFORE UPDATE ON `pet`
+ FOR EACH ROW BEGIN
+    IF NEW.Pet_status = 'Adopted' THEN
+        SET NEW.Shelter_id = NULL;
+    END IF;
+END
+
+
+2. in employee table
+
+CREATE TRIGGER `restrict_manager_id` BEFORE INSERT ON `employee`
+ FOR EACH ROW BEGIN
+    IF NEW.Manager_id = NEW.Employee_ID THEN
+        SET NEW.Manager_id = NULL;
+    END IF;
+END
+
+CREATE TRIGGER `restrict_manger_id_update` BEFORE UPDATE ON `employee`
+ FOR EACH ROW BEGIN
+    IF NEW.Manager_id = NEW.Employee_ID THEN
+        SET NEW.Manager_id = NULL;
+    END IF;
+END
+
+CREATE TRIGGER `restrict_money` BEFORE UPDATE ON `employee`
+ FOR EACH ROW BEGIN
+    IF NEW.Employee_salary > 70000 THEN
+        SET NEW.Employee_salary = 70000;
+    END IF;
+END
+
+CREATE TRIGGER `restrict_salary` BEFORE INSERT ON `employee`
+ FOR EACH ROW BEGIN
+    IF NEW.Employee_salary > 70000 THEN
+        SET NEW.Employee_salary = 70000;
+    END IF;
+END
