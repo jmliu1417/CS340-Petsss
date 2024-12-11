@@ -280,7 +280,7 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
                             <span class="help-block"><?php echo $page_err;?></span>
                         </div>
 						<div class="form-group <?php echo (!empty($ptime_err)) ? 'has-error' : ''; ?>">
-                            <label>Pet time</label>
+                            <label>Pet arrival time</label>
                             <input type="time" min="1" max="20" name="Pet_time" class="form-control" value="<?php echo $Pet_status; ?>">
                             <span class="help-block"><?php echo $ptime_err;?></span>
                         </div>	
