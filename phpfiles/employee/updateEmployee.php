@@ -113,7 +113,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             mysqli_stmt_bind_param($stmt, "sssiiiiii", $param_fname, $param_lname,$param_pos, $param_salary,$param_phone, $param_age, $param_manager, $param_shelter, $param_Employee_ID);
             // Set parameters
             $param_fname = $Employee_fname;
-			$param_lname = $Employee_fname;            
+			$param_lname = $Employee_lname;            
 			$param_pos = $Employee_pos;
             $param_salary = $Employee_salary;
             $param_phone = $Employee_Phone_number;

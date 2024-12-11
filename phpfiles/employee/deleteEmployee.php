@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["Employee_ID"])) {
 
     // If the employee is a manager, prevent deletion
     if ($is_manager > 0) {
-        $error_message = "This employee is a manager. You cannot delete them unless you update or move other employees' Manager ID.";
+        $error_message = "This employee is a manager. You cannot delete them unless they are no longer the manager (remove or update other employees' manager_id).";
     } else {
         // Proceed with deletion if not a manager
         $sql_delete = "DELETE FROM employee WHERE Employee_ID = ?";
