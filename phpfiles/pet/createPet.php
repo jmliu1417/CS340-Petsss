@@ -1,8 +1,8 @@
 <?php
 require_once "../config.php";
 
-$Pet_ID = $Pet_name = $Pet_type = $Pet_breed = $Pet_age = $Pet_status = $Shelter_ID = $Adopter_ID = "";
-$Pet_ID_err = $Pet_name_err = $Pet_type_err = $Pet_breed_err = $Pet_age_err = $Pet_status_err = $Shelter_ID_err = $Adopter_ID_err = "";
+$Pet_ID = $Pet_name = $Pet_type = $Pet_breed = $Pet_age = $Pet_time = $Pet_status = $Shelter_ID = $Adopter_ID = "";
+$Pet_ID_err = $Pet_name_err = $Pet_type_err = $Pet_breed_err = $Pet_time_err = $Pet_age_err = $Pet_status_err = $Shelter_ID_err = $Adopter_ID_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validate Pet_ID
@@ -48,6 +48,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Pet_age_err = "Please enter a valid age.";
     }
 
+    // Validate Pet_time
+    $Pet_time = trim($_POST["Pet_time"]);
+    if (empty($Pet_time)) {
+        $Pet_time_err = "Please enter the arrival time of the pet.";
+    }
+
     // Validate Pet_status
     $Pet_status = trim($_POST["Pet_status"]);
     if (empty($Pet_status)) {
@@ -67,11 +73,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Check for errors before inserting into database
     if (empty($Pet_ID_err) && empty($Pet_name_err) && empty($Pet_type_err) && empty($Pet_breed_err) && 
         empty($Pet_age_err) && empty($Pet_status_err) && empty($Shelter_ID_err)) {
-        $sql = "INSERT INTO pet (Pet_ID, Pet_name, Pet_type, Pet_breed, Pet_age, Pet_status, Shelter_ID, Adopter_ID) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO pet (Pet_ID, Pet_name, Pet_type, Pet_breed, Pet_age, Pet_time, Pet_status, Shelter_ID, Adopter_ID) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = $link->prepare($sql)) {
-            $stmt->bind_param("ssssssss", $Pet_ID, $Pet_name, $Pet_type, $Pet_breed, $Pet_age, $Pet_status, $Shelter_ID, $Adopter_ID);
+            $stmt->bind_param("isssiisii", $Pet_ID, $Pet_name, $Pet_type, $Pet_breed, $Pet_age, $Pet_time, $Pet_status, $Shelter_ID, $Adopter_ID);
             if ($stmt->execute()) {
                 header("location: ../index.php");
                 exit();
@@ -127,6 +133,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label>Pet Age</label>
                 <input type="number" name="Pet_age" class="form-control" value="<?php echo $Pet_age; ?>">
                 <span class="help-block"><?php echo $Pet_age_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($DOB_err)) ? 'has-error' : ''; ?>">
+                <label>Pet Arrvial Date</label>
+                <input type="date" name="Pet_time" class="form-control" value="<?php echo $Pet_time; ?>">
+                <span class="help-block"><?php echo $ptime_err;?></span>
             </div>
             <div class="form-group <?php echo (!empty($Pet_status_err)) ? 'has-error' : ''; ?>">
                 <label>Pet Status</label>

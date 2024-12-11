@@ -194,7 +194,7 @@
                                         echo "<th width=10%>Animal Type</th>";
                                         echo "<th width=8%>Breed </th>";
 										echo "<th width=5%>Age </th>";
-										echo "<th width = 15%>Arrival Time</th>";
+										echo "<th width = 15%>Arrival Date</th>";
                                         echo "<th width=8%>Status</th>";
                                         echo "<th width =5%>Assoicated Shelter ID </th>";
                                         echo "<th width =5%>Adopter ID</th>";
