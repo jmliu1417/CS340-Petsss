@@ -3,7 +3,7 @@
 	session_start();	
 // Include config file
 	
- echo("please");
+ //echo("please");
 
     if (!isset($_SESSION["Pet_ID"])) {
         echo "Pet_ID is not set in session.";
@@ -36,7 +36,7 @@ if(isset($_GET["Pet_ID"]) && !empty(trim($_GET["Pet_ID"]))){
         $param_pet_ID = trim($_GET["Pet_ID"]);
 	//    $param_Dname = $_SESSION["Dname"];
 
-    echo("line 29");
+    //echo("line 29");
 
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt1)){
@@ -65,7 +65,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $Pet_ID = $_SESSION["Pet_ID"];
 	
 
-	echo("67");
+//	echo("67");
     // Validate Dependent name
     $Pet_name = trim($_POST["Pet_name"]);
     if(empty($Pet_name)){
@@ -189,7 +189,7 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
 } else{
     // Check existence of sID parameter before processing further
    // Form default values
-   echo("line 128");
+  // echo("line 128");
    if(isset($_GET["Pet_ID"]) && !empty(trim($_GET["Pet_ID"]))){
        $_SESSION["Pet_ID"] = $_GET["Pet_ID"];
 
@@ -220,7 +220,7 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
                    $Adopter_ID = $row['Adopter_ID'];
                    
 
-                   echo("line 166");
+                 //  echo("line 166");
                } else{
                    // URL doesn't contain valid id. Redirect to error page
                    header("location: ../error.php");
@@ -247,7 +247,7 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update Adopter</title>
+    <title>Update Pet</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         .wrapper{
