@@ -262,7 +262,7 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h3>Update Record for Pet_ID =  <?php echo $_GET["Pet_ID"]; ?> </h3>
+                        <h3>Update Record for Pet <?php echo $_GET["Pet_ID"]; ?> </h3>
                     </div>
                     <p>Please edit the input values and submit to update.
                     <form action="<?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?>" method="post">
