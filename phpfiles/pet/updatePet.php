@@ -60,8 +60,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // the ssn is hidden and can not be changed
     $Pet_ID = $_SESSION["Pet_ID"];
 	
-
-	echo("67");
     // Validate Dependent name
     $Pet_name = trim($_POST["Pet_name"]);
     if(empty($Pet_name)){
@@ -214,13 +212,15 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
                    $Shelter_ID = $row['Shelter_ID'];
                    $Adopter_ID = $row['Adopter_ID'];
                    
+                   header("location: ../index.php");
+                   exit();
                } else{
                    // URL doesn't contain valid id. Redirect to error page
                    header("location: ../error.php");
                    exit();
                }                
            } else{
-               echo "Error in SSN while updating";
+               echo "Error while updating";
            }		
        }
            // Close statement
@@ -279,11 +279,11 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
                             <input type="text" name="Pet_age" class="form-control" value="<?php echo $Pet_age; ?>">
                             <span class="help-block"><?php echo $page_err;?></span>
                         </div>
-						<div class="form-group <?php echo (!empty($ptime_err)) ? 'has-error' : ''; ?>">
-                            <label>Pet arrival time</label>
-                            <input type="time" min="1" max="20" name="Pet_time" class="form-control" value="<?php echo $Pet_status; ?>">
+						<div class="form-group <?php echo (!empty($DOB_err)) ? 'has-error' : ''; ?>">
+                            <label>Pet Arrvial Date</label>
+                            <input type="date" name="Pet_time" class="form-control" value="<?php echo $Pet_time; ?>">
                             <span class="help-block"><?php echo $ptime_err;?></span>
-                        </div>	
+                        </div>
                         <div class="form-group <?php echo (!empty($pstat_err)) ? 'has-error' : ''; ?>">
                             <label>Pet status</label>
                             <input type="text" name="Pet_status" class="form-control" value="<?php echo $Pet_status; ?>">
