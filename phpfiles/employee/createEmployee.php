@@ -1,9 +1,15 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+require_once "../config.php";
+?>
+
+<?php
 
 require_once "../config.php";
 
-$Employee_ID = $Employee_fname = $Employee_lname = $Employee_pos = $Employee_salary = $Employee_Phone_number = $Employee_Age = $Manager_id = "";
-$Employee_ID_err = $Employee_fname_err = $Employee_lname_err = $Employee_pos_err = $Employee_salary_err = $Employee_Phone_number_err = $Employee_Age_err = $Manager_id_err = "";
+$Employee_ID = $Employee_fname = $Employee_lname = $Employee_pos = $Employee_salary = $Employee_Phone_number = $Employee_Age = $Manager_id = $Shelter_ID = "";
+$Employee_ID_err = $Employee_fname_err = $Employee_lname_err = $Employee_pos_err = $Employee_salary_err = $Employee_Phone_number_err = $Employee_Age_err = $Manager_id_err = $Shelter_DI_err = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Employee ID Validation
@@ -12,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Employee_ID_err = "Please enter an Employee ID.";
     } else {
         // Check if the ID already exists in the database
-        $sql = "SELECT Employee_ID FROM employees WHERE Employee_ID = ?";
+        $sql = "SELECT Employee_ID FROM employee WHERE Employee_ID = ?";
         if ($stmt = $link->prepare($sql)) {
             $stmt->bind_param("s", $Employee_ID);
             if ($stmt->execute()) {
@@ -77,17 +83,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $Manager_id_err = "Please enter the Manager ID.";
     }
 
+    // Shelter ID Validation
+    $Shelter_ID = trim($_POST["Shelter_ID"]);
+    if (empty($Shelter_ID)) {
+        $Shelter_DI_err = "Please enter the Shelter ID.";
+    }
+
     // Check for errors before inserting into the database
     if (empty($Employee_ID_err) && empty($Employee_fname_err) && empty($Employee_lname_err) &&
         empty($Employee_pos_err) && empty($Employee_salary_err) && empty($Employee_Phone_number_err) &&
-        empty($Employee_Age_err) && empty($Manager_id_err)) {
+        empty($Employee_Age_err) && empty($Manager_id_err) && empty($Shelter_DI_err)) {
 
         // Prepare an insert statement
-        $sql = "INSERT INTO employees (Employee_ID, Employee_fname, Employee_lname, Employee_pos, Employee_salary, Employee_Phone_number, Employee_Age, Manager_id) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO employee (Employee_ID, Employee_fname, Employee_lname, Employee_pos, Employee_salary, Employee_Phone_number, Employee_Age, Manager_id, Shelter_ID) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
-            mysqli_stmt_bind_param($stmt, "ssssssis", 
+            mysqli_stmt_bind_param($stmt, "ssssssiii", 
                 $param_Employee_ID,
                 $param_Employee_fname,
                 $param_Employee_lname,
@@ -95,7 +107,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $param_Employee_salary,
                 $param_Employee_Phone_number,
                 $param_Employee_Age,
-                $param_Manager_id
+                $param_Manager_id,
+                $param_Shelter_ID
             );
 
             // Set parameters
@@ -107,6 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_Employee_Phone_number = $Employee_Phone_number;
             $param_Employee_Age = $Employee_Age;
             $param_Manager_id = $Manager_id;
+            $param_Shelter_ID = $Shelter_ID;
 
             // Execute the statement
             if (mysqli_stmt_execute($stmt)) {
@@ -178,6 +192,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label>Manager ID</label>
                         <input type="text" name="Manager_ID" class="form-control" value="<?php echo $Manager_id; ?>">
                         <span class="help-block"><?php echo $Manager_id_err; ?></span>
+                    </div>
+                    <div class="form-group <?php echo (!empty($Manager_id_err)) ? 'has-error' : ''; ?>">
+                        <label>Shelter ID</label>
+                        <input type="text" name="Shelter_ID" class="form-control" value="<?php echo $Shelter_ID; ?>">
+                        <span class="help-block"><?php echo $Shelter_DI_err; ?></span>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Submit">
                     <a href="../index.php" class="btn btn-default">Cancel</a>

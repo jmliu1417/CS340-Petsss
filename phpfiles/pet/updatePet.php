@@ -1,8 +1,6 @@
 <?php
 	session_start();	
 // Include config file
-	
- echo("please");
 
     if (!isset($_SESSION["Pet_ID"])) {
         echo "Pet_ID is not set in session.";
@@ -35,7 +33,6 @@ if(isset($_GET["Pet_ID"]) && !empty(trim($_GET["Pet_ID"]))){
         $param_pet_ID = trim($_GET["Pet_ID"]);
 	//    $param_Dname = $_SESSION["Dname"];
 
-    echo("line 29");
 
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt1)){
@@ -188,7 +185,6 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
 } else{
     // Check existence of sID parameter before processing further
    // Form default values
-   echo("line 128");
    if(isset($_GET["Pet_ID"]) && !empty(trim($_GET["Pet_ID"]))){
        $_SESSION["Pet_ID"] = $_GET["Pet_ID"];
 
@@ -218,8 +214,6 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
                    $Shelter_ID = $row['Shelter_ID'];
                    $Adopter_ID = $row['Adopter_ID'];
                    
-
-                   echo("line 166");
                } else{
                    // URL doesn't contain valid id. Redirect to error page
                    header("location: ../error.php");
@@ -246,7 +240,7 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update Adopter</title>
+    <title>Update Pet</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         .wrapper{
@@ -261,7 +255,7 @@ if (!empty($Adopter_ID)) { // Only validate if Adopter_ID is provided
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h3>Update Record for Pet_ID =  <?php echo $_GET["Pet_ID"]; ?> </h3>
+                        <h3>Update Record for Pet <?php echo $_GET["Pet_ID"]; ?> </h3>
                     </div>
                     <p>Please edit the input values and submit to update.
                     <form action="<?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?>" method="post">

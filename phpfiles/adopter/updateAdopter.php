@@ -48,7 +48,6 @@ if(isset($_GET["Adopter_ID"]) && !empty(trim($_GET["Adopter_ID"]))){
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    echo("line 52");
     //hidden ID
     $Adopter_ID = $_SESSION["Adopter_ID"];
 
@@ -110,7 +109,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "sssssssi", $param_fname, $param_lname,$param_DOB, $param_street,$param_city, $param_state, $param_zip, $param_Adopter_ID);
-            echo("line 108");
             // Set parameters
             $param_fname = $Adopter_fname;
 			$param_lname = $Adopter_lname;            
@@ -140,7 +138,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }else{
      // Check existence of sID parameter before processing further
 	// Form default values
-    echo("line 128");
 	if(isset($_GET["Adopter_ID"]) && !empty(trim($_GET["Adopter_ID"]))){
 		$_SESSION["Adopter_ID"] = $_GET["Adopter_ID"];
 
@@ -167,8 +164,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					$City = $row['City'];
 					$State = $row['State'];
 					$Zip = $row['Zip'];
-
-                    echo("line 166");
 				} else{
 					// URL doesn't contain valid id. Redirect to error page
 					header("location: ../error.php");
@@ -210,7 +205,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h3>Update Record for Adopter_ID =  <?php echo $_GET["Adopter_ID"]; ?> </h3>
+                        <h3>Update Record for Adopter <?php echo $_GET["Adopter_ID"]; ?> </h3>
                     </div>
                     <p>Please edit the input values and submit to update.
                     <form action="<?php echo htmlspecialchars($_SERVER["REQUEST_URI"]); ?>" method="post">
